@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>Apherios Weapon Simulator</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            transition: all 1s ease;
+            text-align: center;
+        }
+        
+        .container {
+            /* width: 100%; */
+            display: flex;
+            margin-top: 3vw;
+        }
+        
+        .block {
+            display: block;
+        }
+        
+        .content {
+            padding: 5vw;
+            width: 2vw;
+            height: 2vw;
+            /* margin: 2vw; */
+            border: 1px solid;
+            margin: 5vw;
+            /* border-radius: 20%; */
+        }
+        
+        #weapon-primary {
+            background-color: #F5B2B2;
+        }
+        
+        #weapon-secoundary {
+            background-color: #A5D4AD;
+        }
+        
+        #q-1 {
+            background-color: #A59ACA;
+        }
+        
+        #q-2 {
+            background-color: #A3BCE2;
+        }
+        
+        #q-3 {
+            background-color: white;
+        }
+        
+        .border {
+            border-left: solid;
+            margin: 1vw;
+        }
+        
+        .description {
+            padding-top: 2vh;
+            margin-left: 2vw;
+            /* display: block; */
+            text-align: left;
+        }
+        
+        .description p {
+            margin-bottom: 1vh;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <h1 class="h1">Apherios Weapon Simulator</h1>
+    <div class="container block">
+        <div class="container">
+            <div class="content rounded border border-dark" id="weapon-primary">
+                <p>P</p>
+            </div>
+            <div class="content rounded border border-dark" id="weapon-secoundary">
+                <p>S</p>
+            </div>
+            <!-- <div class="container"> -->
+            <div class="border"></div>
+            <div class="content q rounded border border-dark" id="q-1">
+                <p>Q</p>
+            </div>
+            <div class="content q rounded border border-dark" id="q-2">
+                <p>Q</p>
+            </div>
+            <div class="content q rounded border border-dark" id="q-3">
+                <p>Q</p>
+                <!-- </div> -->
+            </div>
+        </div>
+        <!-- <p id="time"></p> -->
+        <div class="description">
+            <p>Press "a" or Click to use Primary-Weapon</p>
+            <p>Press "w" to swap Primary and Secoundary</p>
+        </div>
+    </div>
+
+    <script>
+        function changeCol(el1, el2) {
+            var work = $(el1).css('background-color')
+            $(el1).css('background-color', $(el2).css('background-color'));
+            $(el2).css('background-color', work);
+
+        }
+
+        function setQ() {
+            changeCol("#q-1", "#q-2")
+            changeCol("#q-2", "#q-3")
+        }
+        $(function() {
+            // var weapon = ["purple", "blue", "white"]
+            $("html").on('click', function() {
+                changeCol("#weapon-primary", "#q-1");
+                setQ();
+                // alert('アラーートだよ');
+
+            });
+            // $("#weapon-secoundary").on('click', function() {
+            //     changeCol("#weapon-secoundary", "#q-1");
+            //     setQ();
+
+            // });
+            $("html").keydown(function(event) {
+                switch (event.key) {
+                    case "W":
+                    case "w":
+                        changeCol("#weapon-primary", "#weapon-secoundary");
+                        break;
+                    case "a":
+                    case "A":
+                        $("html").click();
+                        break;
+                }
+            });
+            // setInterval(function() {
+            //     $('#time').text(new Date());
+            // }, 1000);
+
+        });
+    </script>
+</body>
+
+</html>
